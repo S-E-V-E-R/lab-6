@@ -1,25 +1,81 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab6", "Test1\Lab6.csproj", "{BD82D6AA-FEDB-403C-A3C8-6C23FA5DB3AE}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BD82D6AA-FEDB-403C-A3C8-6C23FA5DB3AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD82D6AA-FEDB-403C-A3C8-6C23FA5DB3AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD82D6AA-FEDB-403C-A3C8-6C23FA5DB3AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD82D6AA-FEDB-403C-A3C8-6C23FA5DB3AE}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {752A3586-63D0-4D6D-815B-D0FDC996FD1C}
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Test1
+{
+    namespace Lab6_OOP
+    {
+        class Program
+        {
+            static void СocktailSort(int[] arr)
+            {
+                bool swapped = true;
+                int start = 0;
+                int end = arr.Length;
+
+                while (swapped == true)
+                {
+                    swapped = false;
+
+                    for (int i = start; i < end - 1; ++i)
+                    {
+                        if (arr[i] > arr[i + 1])
+                        {
+                            int temp = arr[i];
+                            arr[i] = arr[i + 1];
+                            arr[i + 1] = temp;
+                            swapped = true;
+                        }
+                    }
+
+                    if (swapped == false)
+                        break;
+
+                    swapped = false;
+                    end = end - 1;
+                    for (int i = end - 1; i >= start; i--)
+                    {
+                        if (arr[i] > arr[i + 1])
+                        {
+                            int temp = arr[i];
+                            arr[i] = arr[i + 1];
+                            arr[i + 1] = temp;
+                            swapped = true;
+                        }
+                    }
+                    start = start + 1;
+                    
+
+                }
+                foreach (var n in arr)
+                    {
+                        Console.Write(n + " ");
+                    }
+            }
+
+            static void Main(string[] args)
+            {
+                Console.WriteLine("Enter lenth of array: ");
+                var n = Console.ReadLine();
+                int N = int.Parse(n);
+                int[] array = new int[N];
+                var rand = new Random();
+                for (var i = 0; i < array.Length; i++)
+                    array[i] = rand.Next(0, 101);
+                Console.Write("Generated array: ");
+                foreach (var a in array)
+                {
+                    Console.Write(a + " ");
+                }
+                Console.Write("\n");
+                Console.Write("Sorted array by CocktailSort method: ");
+                СocktailSort(array);
+                Console.ReadKey();
+            }
+        }
+    }
+}
+
